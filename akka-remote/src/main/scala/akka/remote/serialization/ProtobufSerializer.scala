@@ -89,7 +89,7 @@ class ProtobufSerializer(val system: ExtendedActorSystem) extends BaseSerializer
         case Some(cachedtoByteArrayMethod) ⇒ cachedtoByteArrayMethod
         case None ⇒
           val unCachedtoByteArrayMethod =
-            if (method eq null) clazz.getDeclaredMethod("toByteArray")
+            if (method eq null) clazz.getMethod("toByteArray")
             else method
           if (toByteArrayMethodBindingRef.compareAndSet(toByteArrayMethodBinding, toByteArrayMethodBinding.updated(clazz, unCachedtoByteArrayMethod)))
             unCachedtoByteArrayMethod
