@@ -826,7 +826,24 @@ Local LevelDB journal
 ---------------------
 
 LevelDB journal plugin config entry is ``akka.persistence.journal.leveldb`` and it writes messages to a local LevelDB
-instance. The default location of the LevelDB files is a directory named ``journal`` in the current working
+instance. Enable this plugin by defining config property:
+
+.. includecode:: ../scala/code/docs/persistence/PersistencePluginDocSpec.scala#leveldb-plugin-config
+
+LevelDB based plugins will also require the following additional dependency declaration:: 
+
+  <dependency>
+    <groupId>org.iq80.leveldb</groupId>
+    <artifactId>leveldb</artifactId>
+    <version>0.7</version>
+  </dependency>
+  <dependency>
+    <groupId>org.fusesource.leveldbjni</groupId>
+    <artifactId>leveldbjni-all</artifactId>
+    <version>1.8</version>
+  </dependency>
+  
+The default location of the LevelDB files is a directory named ``journal`` in the current working
 directory. This location can be changed by configuration where the specified path can be relative or absolute:
 
 .. includecode:: ../scala/code/docs/persistence/PersistencePluginDocSpec.scala#journal-config
@@ -875,7 +892,11 @@ Local snapshot store
 --------------------
 
 Local snapshot store plugin config entry is ``akka.persistence.snapshot-store.local`` and it writes snapshot files to
-the local filesystem. The default storage location is a directory named ``snapshots`` in the current working
+the local filesystem. Enable this plugin by defining config property:
+
+.. includecode:: ../scala/code/docs/persistence/PersistencePluginDocSpec.scala#leveldb-snapshot-plugin-config 
+
+The default storage location is a directory named ``snapshots`` in the current working
 directory. This can be changed by configuration where the specified path can be relative or absolute:
 
 .. includecode:: ../scala/code/docs/persistence/PersistencePluginDocSpec.scala#snapshot-config
