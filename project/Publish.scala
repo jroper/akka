@@ -4,9 +4,11 @@
 
 package akka
 
-import sbt._
+import sbt.{Def, _}
 import sbt.Keys._
 import java.io.File
+import bintray.BintrayKeys._
+
 import sbtwhitesource.WhiteSourcePlugin.autoImport.whitesourceIgnore
 
 object Publish extends AutoPlugin {
@@ -15,10 +17,17 @@ object Publish extends AutoPlugin {
 
   override def trigger = allRequirements
 
+  override def buildSettings: Seq[Def.Setting[_]] = Seq(
+    bintrayReleaseOnPublish in ThisBuild := false    
+  )
+  
   override lazy val projectSettings = Seq(
+    bintrayPackage := "akka",
+    publishArtifact in (Compile, packageDoc) := false,
+    publishArtifact in packageDoc := false,
     crossPaths := false,
     pomExtra := akkaPomExtra,
-    publishTo := akkaPublishTo.value,
+    //publishTo := akkaPublishTo.value,
     credentials ++= akkaCredentials,
     organizationName := "Lightbend Inc.",
     organizationHomepage := Some(url("https://www.lightbend.com")),

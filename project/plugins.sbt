@@ -24,5 +24,7 @@ addSbtPlugin("com.hpe.sbt" % "sbt-pull-request-validator" % "1.0.0")
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.6.0-M5")
 addSbtPlugin("net.bzzt" % "sbt-reproducible-builds" % "0.21")
 
+addSbtPlugin("org.foundweekends" % "sbt-bintray" % "0.5.4")
+
 // used for @unidoc directive
 libraryDependencies += "io.github.classgraph" % "classgraph" % "4.4.12"
